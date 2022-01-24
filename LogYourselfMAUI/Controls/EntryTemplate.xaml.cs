@@ -1,4 +1,4 @@
-﻿namespace LogYourself.Controls
+﻿namespace LogYourselfMAUI.Controls
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class EntryTemplate : ContentView

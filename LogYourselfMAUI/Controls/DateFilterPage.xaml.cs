@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 
-namespace LogYourself.Controls
+namespace LogYourselfMAUI.Controls
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DateFilterPage : ContentView

@@ -1,6 +1,6 @@
 ﻿using LogYourself.ViewModels;
 
-namespace LogYourself.Views
+namespace LogYourselfMAUI.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SettingsPage : ContentPage

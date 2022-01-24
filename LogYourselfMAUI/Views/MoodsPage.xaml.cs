@@ -1,6 +1,6 @@
 ﻿using LogYourself.ViewModels.Logs;
 
-namespace LogYourself.Views
+namespace LogYourselfMAUI.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MoodsPage : ContentPage

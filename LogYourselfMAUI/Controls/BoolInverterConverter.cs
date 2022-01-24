@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 
-namespace LogYourself.Controls
+namespace LogYourselfMAUI.Controls
 {
     public class BoolInverterConverter : IValueConverter
     {

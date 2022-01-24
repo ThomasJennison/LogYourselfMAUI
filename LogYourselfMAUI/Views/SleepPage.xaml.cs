@@ -1,8 +1,6 @@
-﻿using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+﻿using LogYourself.ViewModels.Logs;
 
-using LogYourself.ViewModels.Logs;
-namespace LogYourself.Views
+namespace LogYourselfMAUI.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SleepPage : ContentPage
@@ -12,6 +10,7 @@ namespace LogYourself.Views
             InitializeComponent();
             BindingContext = model;
         }
+
         public SleepPage()
         {
             InitializeComponent();

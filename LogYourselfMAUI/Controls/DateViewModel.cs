@@ -1,6 +1,6 @@
 ﻿using LogYourself.ViewModels;
 
-namespace LogYourself.Controls
+namespace LogYourselfMAUI.Controls
 {
     public class DateViewModel : BaseViewModel
     {

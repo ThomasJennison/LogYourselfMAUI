@@ -1,7 +1,6 @@
 ﻿using LogYourself.ViewModels.Logs;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-namespace LogYourself.Views
+
+namespace LogYourselfMAUI.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SocializationsPage : ContentPage

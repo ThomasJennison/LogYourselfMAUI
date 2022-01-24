@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Globalization;
 
-namespace LogYourself.Controls
+namespace LogYourselfMAUI.Controls
 {
     public class CollectionEmptyToBoolConverter : IValueConverter
     {

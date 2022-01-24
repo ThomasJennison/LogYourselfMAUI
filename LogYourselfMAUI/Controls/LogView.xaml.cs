@@ -1,9 +1,6 @@
 ﻿using LogYourself.Models.Base;
 
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-
-namespace LogYourself.Controls
+namespace LogYourselfMAUI.Controls
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LogView : ContentView
@@ -20,13 +17,14 @@ namespace LogYourself.Controls
             get => (string)GetValue(TitleProperty);
             set => SetValue(TitleProperty, value);
         }
+
         public static readonly BindableProperty TitleProperty = BindableProperty.Create(
                                propertyName: nameof(Title),
                                returnType: typeof(string),
                                declaringType: typeof(LogView),
                                defaultValue: default(string));
 
-        #endregion
+        #endregion Title
 
         #region Edit Command
 
@@ -35,6 +33,7 @@ namespace LogYourself.Controls
                                returnType: typeof(Command),
                                declaringType: typeof(LogView),
                                defaultValue: default(Command));
+
         public Command EditCommand
         {
             get => (Command)GetValue(EditCommandProperty);
@@ -50,6 +49,7 @@ namespace LogYourself.Controls
                                returnType: typeof(Command),
                                declaringType: typeof(LogView),
                                defaultValue: default(Command));
+
         public Command DeleteCommand
         {
             get => (Command)GetValue(DeleteCommandProperty);
@@ -65,6 +65,7 @@ namespace LogYourself.Controls
                                returnType: typeof(Command),
                                declaringType: typeof(LogView),
                                defaultValue: default(Command));
+
         public Command AddCommand
         {
             get => (Command)GetValue(AddCommandProperty);
