@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             Title="Settings"
+             NavigationPage.HasNavigationBar="True"
+             xmlns:controls="clr-namespace:LogYourself.Controls"
+             xmlns:models ="clr-namespace:LogYourself.Models.Base"
+             x:Class="LogYourself.Views.SettingsPage">
+    <ContentPage.Content>
+        
+        <ScrollView>
+            <StackLayout Margin="0,8,0,0">
+  
+                <controls:HeaderBlock HeaderText="General" Margin="5">
+                    <Frame>
+                        <Grid>
+                            <Button Command="{Binding AddSampleLogsCommand}"  Style="{StaticResource ButtonStyle}" 
+                                Text="Add Sample logs" Margin="5"/>
+                        </Grid>
+                    </Frame>
+                </controls:HeaderBlock>
+
+                <controls:HeaderBlock HeaderText="Delete Data" Margin="5" BackgroundColor="White">
+                    <Frame>
+                        <Grid>
+
+                            <Button Command="{Binding DeleteLogCommand}"  Style="{StaticResource ButtonStyle}" 
+                                Text="Delete all mood logs" Margin="2" CommandParameter="{x:Static models:ModelType.Mood}"/>
+
+                            <Button Grid.Row="1" Command="{Binding DeleteLogCommand}" Style="{StaticResource ButtonStyle}"
+                                Text="Delete all sleep logs" Margin="2" CommandParameter="{x:Static models:ModelType.Sleep}" />
+
+                            <Button Grid.Row="2" Command="{Binding DeleteLogCommand}" Style="{StaticResource ButtonStyle}" 
+                                Text="Delete all meal logs"  Margin="2" CommandParameter="{x:Static models:ModelType.Meal}" />
+
+                            <Button Grid.Row="3" Command="{Binding DeleteLogCommand}" Style="{StaticResource ButtonStyle}"
+                                Text="Delete all substance logs" CommandParameter="{x:Static models:ModelType.Substance}" Margin="2"/>
+
+                            <Button Grid.Row="4" Command="{Binding DeleteLogCommand}" Style="{StaticResource ButtonStyle}"
+                                Text="Delete all social logs" CommandParameter="{x:Static models:ModelType.Socialization}" Margin="2"/>
+
+                            <Button Grid.Row="5" Command="{Binding DeleteLogCommand}" Style="{StaticResource ButtonStyle}"
+                                Text="Delete all activity logs" CommandParameter="{x:Static models:ModelType.Activity}" Margin="2"/>
+
+                            <Button Grid.Row="6" Command="{Binding DeleteLogCommand}" Style="{StaticResource ButtonStyle}"
+                                Text="Delete all logs" CommandParameter="{x:Static models:ModelType.All}" Margin="2"/>
+                        </Grid>
+                    </Frame>
+                </controls:HeaderBlock>
+     
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

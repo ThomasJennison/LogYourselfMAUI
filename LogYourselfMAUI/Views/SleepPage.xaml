@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:LogYourself.Controls"
+             mc:Ignorable="d"
+             NavigationPage.HasNavigationBar="True"
+             Title="Log Sleep"
+             Background="White"
+             x:Class="LogYourself.Views.SleepPage">
+    <ContentPage.Content>
+        <controls:SaveCancelPage CancelCommand="{Binding BackCommand}" PageName="Sleep" SaveCommand="{Binding SaveLogCommand}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="{StaticResource RowHeightDateTime}"/>
+                    <RowDefinition Height="{StaticResource RowHeightSlider}"/>
+                    <RowDefinition/> 
+                </Grid.RowDefinitions>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <!--Time of sleep box-->
+                    <controls:HeaderBlock HeaderText="Sleep"  >
+                        <Frame Style="{StaticResource InnerFrameStyle}">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <TimePicker Style="{StaticResource TimeSelectorStyle}" Time="{Binding SleepStart}"/>
+                                <DatePicker Grid.Row="1" Style="{StaticResource DateSelectorStyle}" Date="{Binding SleepStartDate}"/>
+                            </Grid>
+                        </Frame>
+                    </controls:HeaderBlock>
+
+                    <!--Wake up time box-->
+                    <controls:HeaderBlock HeaderText="Wake" Grid.Column="1">
+                        <Frame Style="{StaticResource InnerFrameStyle}">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <TimePicker Style="{StaticResource TimeSelectorStyle}" Time ="{Binding SleepEnd}"/>
+                                <DatePicker Grid.Row="1" Style="{StaticResource DateSelectorStyle}" Date="{Binding SleepEndDate}"/>
+                            </Grid>
+                        </Frame>
+                    </controls:HeaderBlock>
+                </Grid>
+
+                <!--Total sleep box-->
+                <controls:HeaderBlock HeaderText="Total" Grid.Row="1">
+                    <Frame Style="{StaticResource InnerFrameStyle}">
+                        <Label Text="{Binding TotalSleep, StringFormat ='{0:F2}'}" TextColor="Black" Style="{StaticResource InnerLabelStyle}"/>
+                    </Frame>
+                </controls:HeaderBlock>
+
+                <controls:HeaderBlock Grid.Row="2" HeaderText="Dream Log" Margin="0,0,0,5">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="{StaticResource RowHeightSwitch}"/>
+                            <RowDefinition Height="{StaticResource RowHeightSwitch}"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <!--Dream Prompt-->
+                        <Frame Grid.Row="0" Style="{StaticResource InnerFrameStyle}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width=".5*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Text="Did you dream?" Style="{StaticResource InnerLabelStyle}"/>
+                                <Frame Grid.Column="1" BackgroundColor="{StaticResource PrimaryLight}" Padding="0" Margin="3" BorderColor="Black">
+                                    <Switch Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" IsToggled="{Binding RememberedDream}" ThumbColor="{StaticResource Secondary}"/>
+                                </Frame>
+                            </Grid>
+                        </Frame>
+
+                        <Frame Grid.Row="1" Style="{StaticResource InnerFrameStyle}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width=".5*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Text="Was it a nightmare?" Style="{StaticResource InnerLabelStyle}"/>
+                                <Frame Grid.Column="1" BackgroundColor="{StaticResource PrimaryLight}" Padding="0" Margin="3" BorderColor="Black">
+                                    <Switch Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" IsToggled="{Binding Nightmare}" ThumbColor="{StaticResource Secondary}"/>
+                                </Frame>
+                            </Grid>
+                        </Frame>
+
+                        <Frame Grid.Row="2" Style="{StaticResource InnerFrameStyle}">
+                            <Editor  Text="{Binding DreamLog}" Style="{StaticResource EditorStyle}" Placeholder="What happend in the dream?"/>
+                        </Frame>
+                    </Grid>
+                </controls:HeaderBlock>
+            </Grid>
+        </controls:SaveCancelPage>
+    </ContentPage.Content>
+</ContentPage>

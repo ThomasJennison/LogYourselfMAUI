@@ -1,0 +1,24 @@
+﻿using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+
+namespace LogYourself.Controls
+{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class HeaderBlockLight : ContentView
+    {
+        public HeaderBlockLight()
+        {
+            InitializeComponent();
+        }
+
+        public string HeaderText
+        {
+            get => (string)GetValue(HeaderTextProperty);
+            set => SetValue(HeaderTextProperty, value);
+        }
+
+        // Using a DependencyProperty as the backing store for HeaderText.  This enables animation, styling, binding, etc...
+        public static readonly BindableProperty HeaderTextProperty =
+            BindableProperty.Create("HeaderText", typeof(string), typeof(HeaderBlock), default(string));
+    }
+}

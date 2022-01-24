@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:converters ="clr-namespace:LogYourself.Controls" 
+             xmlns:sys="clr-namespace:System;assembly=netstandard"
+             x:DataType="converters:DateFilterPage"
+             mc:Ignorable="d"
+             x:Class="LogYourself.Controls.DateFilterPage">
+    <ContentView.Resources>
+        <converters:BoolInverterConverter x:Key="boolInverter"/>
+    </ContentView.Resources>
+    <ContentView.ControlTemplate>
+        <ControlTemplate>
+            <StackLayout Margin="0" 
+                     BackgroundColor="White">
+
+                <Grid MinimumHeightRequest="80" HeightRequest="60" Padding="0">
+                    <Frame BackgroundColor="{StaticResource Primary}" CornerRadius="0" Padding="0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width=".5*"/>
+                                <ColumnDefinition Width=".2*"/>
+                                <ColumnDefinition Width="70"/>
+                            </Grid.ColumnDefinitions>
+                            <ImageButton Command="{TemplateBinding BackCommand}" 
+                                         Padding="0" 
+                                         BackgroundColor="Transparent"
+                                         Margin="0" 
+                                         HeightRequest="90" 
+                                         Source="sharp_arrow_back_white_48dp.png"/>
+                            
+                            <Label Text="{TemplateBinding PageTitle}" 
+                                   HorizontalTextAlignment="Center" 
+                                   VerticalTextAlignment="Center"
+                                   FontSize="20"
+                                   TextColor="White"
+                                   Grid.Column="1"/>
+                            
+                            <Label Text ="Date Filter" 
+                                   Grid.Column="2" 
+                                   HorizontalTextAlignment="End" 
+                                   VerticalTextAlignment="Center"
+                                   
+                                   TextColor="White"/>
+
+                            <Switch x:Name="DaySelectVisibleSwitch" 
+                                    Grid.Column="3"    
+                                    IsToggled="{TemplateBinding DateFilterVisibility}"
+                                    HorizontalOptions="Start"
+                                    Margin="5">
+                            </Switch>
+                            
+                        </Grid>
+                    </Frame>
+                </Grid>
+
+                <Grid IsVisible="{Binding Source={x:Reference DaySelectVisibleSwitch}, Path=IsToggled}"
+                      Padding="5" 
+                      Margin="5">
+                    <StackLayout>
+                        <Frame Padding="0" 
+                               Margin="5"
+                               BorderColor="Black" 
+                               BackgroundColor="{StaticResource FrameBackground}">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="50"/>
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+
+                                <Frame Padding="0" 
+                                   BorderColor="Black" 
+                                   BackgroundColor="{StaticResource PrimaryDark}" 
+                                   Margin="5" 
+                                   MinimumHeightRequest="100">
+
+                                    <Label Text="Logged Days" 
+                                       HorizontalTextAlignment="Center" 
+                                       VerticalTextAlignment="Center" 
+                                       TextColor="White" 
+                                       FontSize="16"/>
+                                </Frame>
+
+                                <Frame BorderColor="Black" 
+                                   Grid.Row="1" 
+                                   Margin="5" 
+                                   Padding="0">
+                                    <ListView ItemsSource="{Binding Source={RelativeSource TemplatedParent}, Mode=TwoWay, Path=DaysInRange}"
+                                              BackgroundColor="Gainsboro"
+                                              RefreshControlColor="Aquamarine"
+                                              SeparatorColor="Black"
+                                              Margin="5"
+                                              SelectedItem="{Binding Source={RelativeSource TemplatedParent}, Mode=TwoWay, Path=SelectedDateTime}">
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextCell x:DataType="converters:DateViewModel" 
+                                                          Text="{Binding Date.Date, StringFormat='{0:dddd, dd MMMM yyyy}'}" TextColor="Black"/>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+                                </Frame>
+                            </Grid>
+                        </Frame>
+
+                        <Frame Margin="5" 
+                           Padding="0" 
+                           BorderColor="Black" 
+                           MinimumHeightRequest="200">
+                            <Grid>
+                                <Grid>
+
+                                    <Frame Padding="0" BorderColor="Black" BackgroundColor="{StaticResource PrimaryDark}" Margin="5" MinimumHeightRequest="100">
+                                        <Label Text="Month" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="White" FontSize="16"/>
+                                    </Frame>
+                                    <Picker Grid.Row="1" BackgroundColor="White" Margin="5" HorizontalTextAlignment="Center" 
+                                            SelectedItem="{Binding Source={RelativeSource TemplatedParent}, Mode=TwoWay, Path=SelectedMonth}">
+                                        <Picker.ItemsSource>
+                                            <x:Array Type="{x:Type x:String}">
+                                                <x:String>January</x:String>
+                                                <x:String>February</x:String>
+                                                <x:String>March</x:String>
+                                                <x:String>May</x:String>
+                                                <x:String>June</x:String>
+                                                <x:String>August</x:String>
+                                                <x:String>September</x:String>
+                                                <x:String>October</x:String>
+                                                <x:String>November</x:String>
+                                                <x:String>December</x:String>
+                                            </x:Array>
+                                        </Picker.ItemsSource>
+                                    </Picker>
+                                </Grid>
+
+                                <Grid Grid.Column="1">
+                                    <!--Year Header-->
+                                    <Frame Padding="0" BorderColor="Black" BackgroundColor="{StaticResource PrimaryDark}" Margin="5" MinimumHeightRequest="100">
+                                        <Label Text="Year" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="White" FontSize="16"/>
+                                    </Frame>
+                                    <Picker Grid.Row="1" BackgroundColor="White" Margin="5" HorizontalTextAlignment="Center" 
+                                            x:Name="yearPicker"
+                                            SelectedItem="{Binding Source={RelativeSource TemplatedParent}, Mode=TwoWay, Path=SelectedYear}">
+                                        <Picker.ItemsSource>
+                                            <x:Array Type="{x:Type x:String}">
+                                                <x:String>2021</x:String>
+                                            </x:Array>
+                                        </Picker.ItemsSource>
+                                    </Picker>
+                                </Grid>
+                            </Grid>
+                        </Frame>
+                    </StackLayout>
+                </Grid>
+
+                <Grid IsVisible="{Binding Source={x:Reference DaySelectVisibleSwitch}, 
+                      Path=IsToggled, Converter={StaticResource boolInverter}}"
+                      VerticalOptions="FillAndExpand">
+
+                    <Frame BackgroundColor="{StaticResource FrameBackground}" 
+                       BorderColor="Black" 
+                       CornerRadius="2" 
+                       Margin="5,5,5,10" 
+                       Padding="5">
+                        <ContentPresenter HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+
+                        </ContentPresenter>
+                    </Frame>
+                </Grid>
+
+            </StackLayout>
+        </ControlTemplate>
+    </ContentView.ControlTemplate>
+</ContentView>

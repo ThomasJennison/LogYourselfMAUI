@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="LogYourself.Controls.LogView">
+    <ContentView.ControlTemplate>
+        <ControlTemplate>
+            <Frame Padding="3" Margin="0" BorderColor="Black" BackgroundColor="White">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="40"/>
+                            <ColumnDefinition Width="40"/>
+                            <ColumnDefinition Width="40"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition Height="2"/>
+                        </Grid.RowDefinitions>
+                        <Frame BackgroundColor="{StaticResource PrimaryDark}" 
+                               HeightRequest="60" 
+                               Padding="0"
+                               BorderColor="Black">
+                            <Label Text="{TemplateBinding Title}" 
+                                   HorizontalTextAlignment="Center" 
+                                   TextColor="White"
+                                   VerticalTextAlignment="Center" 
+                                   FontSize="14" 
+                                   FontAttributes="Bold"
+                            />
+                        </Frame>
+                        <ImageButton Grid.Column="1" 
+                                     Source="twotone_delete_forever_black_48dp.png" 
+                                     Command="{TemplateBinding DeleteCommand}" 
+                                     Padding="4" 
+                                     Margin="0" 
+                                     BackgroundColor="LightCoral" 
+                                     BorderColor="Black" 
+                                     BorderWidth="1"
+                        />
+                        <ImageButton Grid.Column="2" 
+                                     Source="twotone_add_box_black_48dp.png" 
+                                     Padding="4" 
+                                     Command="{TemplateBinding AddCommand}"
+                                     Margin="0" 
+                                     BackgroundColor="LightGreen" 
+                                     BorderColor="Black" 
+                                     BorderWidth="1"
+                        />
+                        <ImageButton Grid.Column="3" 
+                                     Command="{TemplateBinding EditCommand}"
+                                     Source="baseline_create_black_48dp.png" 
+                                     Margin="0" 
+                                     Padding="4" 
+                                     BackgroundColor="LightBlue" 
+                                     BorderColor="Black" 
+                                     BorderWidth="1"
+                        />
+                        <BoxView Grid.Row="1" 
+                                 BackgroundColor="Black" 
+                                 Grid.ColumnSpan="4"
+                        />
+                    </Grid>
+                    <ContentPresenter Grid.Row="1"/>
+                </Grid>
+            </Frame>
+        </ControlTemplate>
+    </ContentView.ControlTemplate>
+</ContentView>

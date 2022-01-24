@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:LogYourself.Controls"
+             xmlns:services="clr-namespace:LogYourself.Services"
+             mc:Ignorable="d"
+             NavigationPage.HasNavigationBar="True"
+             Title="Log a meal"
+             x:Class="LogYourself.Views.MealPage">
+    <ContentPage.Content>
+        <controls:SaveCancelPage CancelCommand="{Binding BackCommand}" PageName="Meal" SaveCommand="{Binding SaveLogCommand}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="{StaticResource RowHeightSingle}"/>
+                    <RowDefinition Height="{StaticResource RowHeightSelector}"/>
+                    <RowDefinition Height="{StaticResource RowHeightSelector}"/>
+                    <RowDefinition Height="{StaticResource RowHeightSelector}"/>
+                    <RowDefinition Height="{StaticResource RowHeightSlider}"/>
+                </Grid.RowDefinitions>
+
+                <!--Registered time grid-->
+                <Grid>
+                    <!--Date Picker-->
+                    <controls:HeaderBlock HeaderText="Date">
+                        <Frame Style="{StaticResource InnerFrameStyle}">
+                            <DatePicker Style="{StaticResource DateSelectorStyle}" FontSize="13" Date="{Binding LogDateTime}"/>
+                        </Frame>
+                    </controls:HeaderBlock>
+
+                    <!--Time Picker-->
+                    <controls:HeaderBlock HeaderText="Time" Grid.Column="1" Margin="0">
+                        <Frame Style="{StaticResource InnerFrameStyle}">
+                            <TimePicker Style="{StaticResource TimeSelectorStyle}" Time="{Binding LogTimeSpan}"/>
+                        </Frame>
+                    </controls:HeaderBlock>
+                </Grid>
+
+                <controls:HeaderBlockAddRemoveExpander Grid.Row="1" Title="Meal Name" SelectedSuggestion="{Binding MealName}" BoxType="{x:Static services:SuggestionTypes.MealNames}"/>
+                <controls:HeaderBlockAddRemoveExpander Grid.Row="2" Title="Meal Type" SelectedSuggestion="{Binding MealType}" BoxType="{x:Static services:SuggestionTypes.MealTypes}"/>
+                <controls:HeaderBlockAddRemoveExpander Grid.Row="3" Title="Meal Size" SelectedSuggestion="{Binding MealSize}" BoxType="{x:Static services:SuggestionTypes.MealSizes}"/>
+
+                <!--Rating slider-->
+                <controls:HeaderBlock HeaderText="How satisfied are you?" Grid.Row="4" >
+                    <controls:RatingSlider Rating="{Binding Satisfaction}"/>
+                </controls:HeaderBlock>
+
+            </Grid>
+        </controls:SaveCancelPage>
+    </ContentPage.Content>
+</ContentPage>

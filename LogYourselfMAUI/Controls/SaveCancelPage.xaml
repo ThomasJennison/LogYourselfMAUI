@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="LogYourself.Controls.SaveCancelPage">
+    <ContentView.ControlTemplate>
+        <ControlTemplate>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="70"/>
+                </Grid.RowDefinitions>
+
+                <ScrollView  Margin="0,0,0,-5">
+                    <Frame BorderColor="Black" Padding="5" Margin="5">
+                        <ContentPresenter HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="3"/>
+                    </Frame>
+                </ScrollView>
+
+                <Grid Grid.Row="1" Margin="0" BackgroundColor="{StaticResource PrimaryLight}">
+
+                    <Frame Padding="0" BorderColor="Black" Margin="5" Grid.Column="0">
+                        <Button ImageSource="twotone_backspace_black_48dp.png" Command="{TemplateBinding CancelCommand}" 
+                                Text="Cancel" TextColor="Black" BorderWidth="2" BackgroundColor="LightCoral" Margin="7" BorderColor="Black" Grid.Row="1"/>
+                    </Frame>
+
+                    <Frame Padding="0" BorderColor="Black" Margin="5" Grid.Column="1">
+                        <Button ImageSource="twotone_save_black_48dp.png" Command="{TemplateBinding SaveCommand}" 
+                                Text="Save Log" TextColor="Black" BorderWidth="2" BackgroundColor="LightGreen" Margin="7" BorderColor="Black" Grid.Row="1"/>
+                    </Frame>
+         
+                </Grid>
+
+            </Grid>
+        </ControlTemplate>
+    </ContentView.ControlTemplate>
+</ContentView>

@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:LogYourself.Controls"
+             xmlns:services="clr-namespace:LogYourself.Services"
+             mc:Ignorable="d"
+             BackgroundColor="White"
+             NavigationPage.HasBackButton="false"
+             NavigationPage.HasNavigationBar="True"         
+             Title="Log your mood"
+             x:Class="LogYourself.Views.MoodPage">
+    <ContentPage.Content>
+        <controls:SaveCancelPage CancelCommand="{Binding CancelCommand}" SaveCommand="{Binding SaveLogCommand}" PageName="Mood">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="{StaticResource RowHeightSingle}"/>
+                    <RowDefinition Height="{StaticResource RowHeightSlider}"/>
+                    <RowDefinition Height="{StaticResource RowHeightSelector}"/>
+                    <RowDefinition Height="{StaticResource RowHeightSelector}"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!--Date / Time grid-->
+                <Grid>
+                    <!--Time Picker-->
+                    <controls:HeaderBlock HeaderText="Time" Margin="1" >
+                        <Frame Style="{StaticResource InnerFrameStyle}">
+                            <TimePicker Style="{StaticResource TimeSelectorStyle}" Time="{Binding StartTimeSpan}"/>
+                        </Frame>
+                    </controls:HeaderBlock>
+
+                    <!--Date Picker-->
+                    <controls:HeaderBlock HeaderText="Date"  Grid.Column="1" Margin="1">
+                        <Frame Style="{StaticResource InnerFrameStyle}">
+                            <DatePicker Style="{StaticResource DateSelectorStyle}" Date="{Binding LogTime}"/>
+                        </Frame>
+                    </controls:HeaderBlock>
+                </Grid>
+
+                <!--Rating slider-->
+                <controls:HeaderBlock HeaderText="Rate how you feel" Grid.Row="1">
+                    <controls:RatingSlider Rating="{Binding OverallMood}" />
+                </controls:HeaderBlock>
+
+                
+                <controls:HeaderBlockAddRemoveExpander Grid.Row="2" Title="Strongest Emotion" 
+                                               SelectedSuggestion="{Binding StrongestEmotion}" BoxType="{x:Static services:SuggestionTypes.Emotions}"/>
+                
+                
+                <controls:HeaderBlockAddRemoveExpander Grid.Row="3" Title="Location" 
+                                               SelectedSuggestion="{Binding Location}" BoxType="{x:Static services:SuggestionTypes.Locations}"/>
+
+                <!--Description Box-->
+                <controls:HeaderBlock Grid.Row="4" HeaderText="Description">
+                    <Frame Style="{StaticResource InnerFrameStyle}">
+                        <Editor Text="{Binding Description}"  Style="{StaticResource EditorStyle}" TextColor="Black"
+                                Placeholder="Whats up?"/>
+                    </Frame>
+                </controls:HeaderBlock>
+
+            </Grid>
+        </controls:SaveCancelPage>
+    </ContentPage.Content>
+</ContentPage>

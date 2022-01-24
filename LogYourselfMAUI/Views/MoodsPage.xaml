@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:LogYourself.Controls"
+             mc:Ignorable="d"
+             BackgroundColor="White"
+             Shell.NavBarIsVisible="false"
+             xmlns:models ="clr-namespace:LogYourself.Models.Base"
+             x:Class="LogYourself.Views.MoodsPage">
+    <ContentPage.Resources>
+
+        <Style x:Key="ListBoxLabel" TargetType="Label">
+            <Setter Property="HorizontalTextAlignment" Value="Center"/>
+            <Setter Property="VerticalTextAlignment" Value="Center"/>
+            <Setter Property="TextColor" Value="Black"/>
+            <Setter Property="FontSize" Value="12"/>
+        </Style>
+
+        <Style x:Key="HeaderLabel" TargetType="Label">
+            <Setter Property="HorizontalTextAlignment" Value="Center"/>
+            <Setter Property="VerticalTextAlignment" Value="Center"/>
+            <Setter Property="TextColor" Value="Black"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+        </Style>
+
+        <DataTemplate x:Key="MoodDataTemplate">
+            <Grid>
+                <Frame Margin="10" Padding="2" BorderColor="Black" CornerRadius="10" BackgroundColor="White">
+                    <StackLayout>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0" Margin="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition Height="1"/>
+                                    <RowDefinition/>
+                                    <RowDefinition Height="1"/>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Column="0">
+                                    <Label Text="Time" 
+                                           HorizontalOptions="CenterAndExpand" 
+                                           VerticalOptions="CenterAndExpand" 
+                                           Style="{StaticResource HeaderLabel}"
+                                    />
+                                    <Label Text="{Binding RegisteredTime}" 
+                                           HorizontalOptions="CenterAndExpand" 
+                                           VerticalOptions="Start" Style="{StaticResource InnerLabelStyle}" 
+                                           Grid.Row="1"
+                                    />
+                                </Grid>
+                                <Grid Grid.Column="1">
+                                    <Label Text="Location" 
+                                           HorizontalOptions="CenterAndExpand" 
+                                           VerticalOptions="CenterAndExpand" 
+                                           Style="{StaticResource HeaderLabel}"
+                                    />
+                                    <Label Text="{Binding Location}"
+                                           HorizontalOptions="CenterAndExpand" 
+                                           VerticalOptions="Start" 
+                                           Style="{StaticResource InnerLabelStyle}"
+                                           Grid.Row="1"
+                                    />
+                                </Grid>
+                                <BoxView BackgroundColor="Black" Grid.Row="1" Grid.ColumnSpan="2"/>
+                                <Grid Grid.Row="2" Grid.ColumnSpan="2">
+                                    
+                                    <Label Text="Strongest Emotion:" 
+                                           Style="{StaticResource HeaderLabel}"/>
+
+                                    <Label Text="{Binding StrongestEmotion}" 
+                                           Style="{StaticResource InnerLabelStyle}" 
+                                           Grid.Row="1"/>
+                                    
+                                    <Label Text="Overall Mood:" 
+                                           Style="{StaticResource HeaderLabel}"
+                                           Grid.Column="1"/>
+
+                                    <Label Text="{Binding OverallMood, StringFormat='{0:F1} / 10'}"  
+                                           Style="{StaticResource HeaderLabel}" 
+                                           Grid.Column="1" 
+                                           Grid.Row="1" />
+                                </Grid>
+                                <BoxView BackgroundColor="Black" 
+                                         Grid.Row="3" 
+                                         Grid.ColumnSpan="2"
+                                />
+                            </Grid>
+
+                        </Grid>
+                        <Label Text="{Binding Description}" 
+                               MinimumHeightRequest="100"
+                               HorizontalTextAlignment="Center" 
+                               VerticalTextAlignment="Center"  
+                               Margin="5" TextColor="Black"/>
+                    </StackLayout>
+                </Frame>
+            </Grid>
+        </DataTemplate>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <controls:DateFilterPage SelectedDateTime="{Binding SelectedDateTime}"
+                                 DaysInRange="{Binding DaysInRange}"
+                                 SelectedYear="{Binding SelectedYear}"
+                                 SelectedMonth="{Binding SelectedMonth}"
+                                 PageTitle="Moods"
+                                 Loading="{Binding Loading}">
+            <Grid>
+                <controls:LogView Title="Mood Logs"
+                                  AddCommand="{Binding AddSelectedCommand}" 
+                                  EditCommand="{Binding EditSelectedCommand}"
+                                  DeleteCommand="{Binding DeleteSelectedCommand}">
+
+                    <CollectionView ItemsSource="{Binding MoodsForSelectedDay}" 
+                                    SelectedItem="{Binding SelectedMood}" 
+                                    ItemTemplate="{StaticResource MoodDataTemplate}"
+                                    SelectionMode="Single" 
+                                    Grid.Row="1" 
+                                    Background="White"/>
+                </controls:LogView>
+            </Grid>
+        </controls:DateFilterPage>
+    </ContentPage.Content>
+</ContentPage>

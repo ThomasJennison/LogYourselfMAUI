@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:LogYourself.Controls"
+             mc:Ignorable="d"
+             BackgroundColor="White"
+             Shell.NavBarIsVisible="false"
+             xmlns:models ="clr-namespace:LogYourself.Models.Base"
+             x:Class="LogYourself.Views.SleepsPage">
+    <ContentPage.Resources>
+
+        <Style x:Key="ListBoxLabel" TargetType="Label">
+            <Setter Property="HorizontalTextAlignment" Value="Center"/>
+            <Setter Property="VerticalTextAlignment" Value="Center"/>
+            <Setter Property="TextColor" Value="Black"/>
+            <Setter Property="FontSize" Value="12"/>
+        </Style>
+
+        <Style x:Key="HeaderLabel" TargetType="Label">
+            <Setter Property="HorizontalTextAlignment" Value="Center"/>
+            <Setter Property="VerticalTextAlignment" Value="Center"/>
+            <Setter Property="TextColor" Value="Black"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+        </Style>
+
+        <DataTemplate x:Key="SleepDataTemplate">
+            <Grid>
+                <Frame Margin="10" Padding="2" BorderColor="Black" CornerRadius="10" BackgroundColor="White">
+                    <StackLayout>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width=".4*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid Grid.Column="0" Margin="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition Height="1"/>
+                                    <RowDefinition/>
+                                    <RowDefinition Height="1"/>
+                                </Grid.RowDefinitions>
+
+                                <Grid>
+                                    <Grid Grid.Column="0">
+                                        <Label Text="Start" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource HeaderLabel}"/>
+                                        <Label Text="{Binding SleepStartDate}" HorizontalOptions="CenterAndExpand" 
+                                                                                       VerticalOptions="Start" Style="{StaticResource InnerLabelStyle}" Grid.Row="1"/>
+                                    </Grid>
+
+                                    <Grid Grid.Column="1">
+                                        <Label Text="End" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource HeaderLabel}"/>
+                                        <Label Text="{Binding SleepEndDate}" HorizontalOptions="CenterAndExpand" 
+                                                                                       VerticalOptions="Start" Style="{StaticResource InnerLabelStyle}" Grid.Row="1"/>
+                                    </Grid>
+
+                                    <Grid Grid.Column="2">
+                                        <Label Text="Total" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource HeaderLabel}"/>
+                                        <Label Text="{Binding TotalSleep}" HorizontalOptions="CenterAndExpand" 
+                                                                                       VerticalOptions="Start" Style="{StaticResource InnerLabelStyle}" Grid.Row="1"/>
+                                    </Grid>
+                                </Grid>
+                                <BoxView BackgroundColor="Black" Grid.Row="1" />
+
+                                <Grid Grid.Column="0" Grid.Row="2">
+
+                                    <Grid Grid.Column="0">
+                                        <Label Text="Nightmare?" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource HeaderLabel}"/>
+                                        <CheckBox IsChecked="{Binding Nightmare}" IsEnabled="False" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Row="1"/>
+                                    </Grid>
+
+                                    <Grid Grid.Column="1">
+                                        <Label Text="Dream?" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource HeaderLabel}"/>
+                                        <CheckBox IsChecked="{Binding RememberedDream}" IsEnabled="False" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Row="1"/>
+                                    </Grid>
+                                </Grid>
+
+                                <BoxView BackgroundColor="Black" Grid.Row="3" />
+                            </Grid>
+
+                            <Grid Margin="10" Grid.Column="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30"/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Label Text="{Binding RestRating, StringFormat='Rest Rating: {0:F1} / 10'}"  Style="{StaticResource HeaderLabel}"/>
+                            </Grid>
+                        </Grid>
+                        <Label Text="{Binding DreamLog}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"  Margin="5" TextColor="Black"/>
+                    </StackLayout>
+                </Frame>
+            </Grid>
+        </DataTemplate>
+        
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <controls:DateFilterPage SelectedDateTime="{Binding SelectedDateTime}"
+                                 DaysInRange="{Binding DaysInRange}"
+                                 SelectedYear="{Binding SelectedYear}"
+                                 SelectedMonth="{Binding SelectedMonth}"
+                                 PageTitle="Sleep Logs"
+                                 Loading="{Binding Loading}">
+            <Grid>
+                <controls:LogView Title="Sleep Logs"
+                                  AddCommand="{Binding AddSelectedCommand}" 
+                                  EditCommand="{Binding EditSelectedCommand}"
+                                  DeleteCommand="{Binding DeleteSelectedCommand}">
+
+                    <CollectionView ItemsSource="{Binding SleepsForSelectedDay}" 
+                                    SelectedItem="{Binding SelectedSleep}" 
+                                    ItemTemplate="{StaticResource SleepDataTemplate}"
+                                    SelectionMode="Single" 
+                                    Grid.Row="1" 
+                                    Background="White"/>
+                </controls:LogView>
+            </Grid>
+        </controls:DateFilterPage>
+    </ContentPage.Content>
+</ContentPage>

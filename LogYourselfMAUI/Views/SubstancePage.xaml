@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:LogYourself.Controls"
+             mc:Ignorable="d"
+             NavigationPage.HasNavigationBar="True"
+             Title="Log Substance Use"
+             xmlns:services="clr-namespace:LogYourself.Services"
+             x:Class="LogYourself.Views.SubstancePage">
+    <ContentPage.Content>
+        <controls:SaveCancelPage SaveCommand="{Binding SaveLogCommand}">
+            <Grid Margin="0,3,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="{StaticResource RowHeightSingle}"/>
+                    <RowDefinition Height="{StaticResource RowHeightSelector}"/>
+                    <RowDefinition Height="{StaticResource RowHeightSelector}"/>
+                    <RowDefinition Height="{StaticResource RowHeightSelector}"/>
+                    <RowDefinition Height="{StaticResource RowHeightSingle}"/>
+                    <RowDefinition Height="{StaticResource RowHeightSlider}"/>
+                </Grid.RowDefinitions>
+
+                <!--Registered time grid-->
+                <Grid>
+                    <!--Date Picker-->
+                    <controls:HeaderBlock HeaderText="Date">
+                        <Frame Style="{StaticResource InnerFrameStyle}">
+                            <DatePicker Style="{StaticResource DateSelectorStyle}" Date="{Binding LogTime}"/>
+                        </Frame>
+                    </controls:HeaderBlock>
+
+                    <!--Time Picker-->
+                    <controls:HeaderBlock HeaderText="Time" Grid.Column="1" Margin="0">
+                        <Frame Style="{StaticResource InnerFrameStyle}">
+                            <TimePicker Style="{StaticResource TimeSelectorStyle}" Time="{Binding StartTimeSpan}"/>
+                        </Frame>
+                    </controls:HeaderBlock>
+                </Grid>
+
+                <controls:HeaderBlockAddRemoveExpander Grid.Row="1" Title="Substance Name" SelectedSuggestion="{Binding SubstanceName}" 
+                                               BoxType="{x:Static services:SuggestionTypes.SubstanceNames}"/>
+
+                <controls:HeaderBlockAddRemoveExpander Grid.Row="2" Title="Consumed by" SelectedSuggestion="{Binding ConsumptionMethod}" 
+                                               BoxType="{x:Static services:SuggestionTypes.SubstanceConsumptionMethods}"/>
+
+                <controls:HeaderBlockAddRemoveExpander Grid.Row="3" Title="Unit" SelectedSuggestion="{Binding Unit}" 
+                                                   BoxType="{x:Static services:SuggestionTypes.Units}"/>
+
+                <!--Ammount of substance-->
+                <controls:HeaderBlock Grid.Row="4" HeaderText="Qty.">
+                    <Frame Style="{StaticResource InnerFrameStyle}">
+                        <Grid >
+                            <Entry Text="{Binding Ammount}"
+                                   Margin="7" 
+                                   HorizontalTextAlignment="Center" 
+                                   TextColor="Black" 
+                                   VerticalTextAlignment="Center" 
+                                   BackgroundColor="White"/>
+                            <Stepper Grid.Column="1" Value="{Binding StepperOffset}" Margin="5" />
+                        </Grid>
+                    </Frame>
+                </controls:HeaderBlock>
+
+                <controls:HeaderBlock HeaderText="Rate how you feel" Grid.Row="5">
+                    <controls:RatingSlider Rating="{Binding Satisfaction}"/>
+                </controls:HeaderBlock>
+            </Grid>
+        </controls:SaveCancelPage>
+    </ContentPage.Content>
+</ContentPage>
