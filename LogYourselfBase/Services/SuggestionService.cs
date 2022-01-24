@@ -1,14 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using LogYourself.Models;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Globalization;
-using System.IO;
-using System.Linq.Expressions;
-using System.Net.Http.Headers;
-using System.Text;
 
 namespace LogYourself.Services
 {
@@ -32,6 +24,7 @@ namespace LogYourself.Services
         private readonly Dictionary<SuggestionTypes, List<string>> _suggestions;
 
         public const string SuggestionsFilename = "Suggestions.json";
+
         public static string FilePath
         {
             get

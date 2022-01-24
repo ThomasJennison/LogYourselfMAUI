@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace LogYourself.Models
+﻿namespace LogYourself.Models
 {
     public class Item
     {

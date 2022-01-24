@@ -1,7 +1,5 @@
-﻿using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+﻿using LogYourself.ViewModels;
 
-using LogYourself.ViewModels;
 namespace LogYourself.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]

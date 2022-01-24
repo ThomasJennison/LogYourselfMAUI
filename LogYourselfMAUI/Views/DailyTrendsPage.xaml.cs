@@ -1,18 +1,13 @@
-﻿using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-
+﻿using LogYourself.Models;
 using LogYourself.ViewModels;
-using Microcharts;
-using SkiaSharp;
-using System.Collections.Generic;
-using LogYourself.Models;
 
-namespace LogYourself.Views
+namespace LogYourselfMAUI.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DailyTrendsPage : ContentPage
     {
         private readonly DailyTrendsViewModel view_model;
+
         public DailyTrendsPage()
         {
             InitializeComponent();
@@ -38,6 +33,5 @@ namespace LogYourself.Views
             LineChart chart = new LineChart { Entries = chartItems.Count > 0 ? chartItems.ToArray() : null };
             chartView.Chart = chart;
         }
-
     }
 }

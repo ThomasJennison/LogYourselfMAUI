@@ -1,5 +1,4 @@
-﻿using LogYourself.Views;
-using Xamarin.Forms;
+﻿using LogYourself.Models;
 
 namespace LogYourself.ViewModels
 {
@@ -9,10 +8,10 @@ namespace LogYourself.ViewModels
 
         public MainViewModel()
         {
-            NavigateCommand = new Command<PageNames>((page) => Navigate(page));
+            NavigateCommand = new Command<PageNames>((page) => MainViewModel.Navigate(page));
         }
 
-        private async void Navigate(PageNames page)
+        private static async void Navigate(PageNames page)
         {
             await Shell.Current.GoToAsync(page.ToString());
         }

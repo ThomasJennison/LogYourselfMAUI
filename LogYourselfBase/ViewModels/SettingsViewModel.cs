@@ -1,9 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Globalization;
-using System.Threading.Tasks;
-using Xamarin.Forms;
-
-using LogYourself.Models;
+﻿using LogYourself.Models;
 using LogYourself.Models.Base;
 
 namespace LogYourself.ViewModels
@@ -13,6 +8,7 @@ namespace LogYourself.ViewModels
         public const string NavigationNodeName = "settings";
         public Command<ModelType> DeleteLogCommand { get; private set; }
         public Command AddSampleLogsCommand { get; private set; }
+
         public SettingsViewModel()
         {
             DeleteLogCommand = new Command<ModelType>(async (s) => await DeleteModelFile(s));
@@ -76,7 +72,6 @@ namespace LogYourself.ViewModels
             }
             else
                 await _database.ClearSpecificDatabase(modelType);
-
         }
     }
 }

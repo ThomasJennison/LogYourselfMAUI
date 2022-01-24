@@ -1,6 +1,4 @@
-﻿using LogYourself.ViewModels;
-
-namespace LogYourself.Controls
+﻿namespace LogYourself.ViewModels
 {
     public class DateViewModel : BaseViewModel
     {

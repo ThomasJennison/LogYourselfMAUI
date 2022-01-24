@@ -1,8 +1,6 @@
-﻿using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+﻿using LogYourself.ViewModels;
 
-using LogYourself.ViewModels;
-namespace LogYourself.Views
+namespace LogYourselfMAUI.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class GoalEditorPage : ContentPage
@@ -12,6 +10,7 @@ namespace LogYourself.Views
             InitializeComponent();
             BindingContext = model;
         }
+
         public GoalEditorPage()
         {
             InitializeComponent();

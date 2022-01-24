@@ -1,5 +1,4 @@
 ﻿using LogYourself.Models.Base;
-using System;
 
 namespace LogYourself.Models
 {
@@ -13,7 +12,6 @@ namespace LogYourself.Models
         public bool Exersice { get; set; }
         public bool WantedToStart { get; set; }
         public string Comments { get; set; }
-
 
         public ActivityModel() : base(ModelType.Activity)
         {

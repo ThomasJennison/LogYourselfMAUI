@@ -1,11 +1,6 @@
-﻿using LogYourself.Models;
-using LogYourself.Services;
-using System;
-using System.Collections.Generic;
+﻿using LogYourself.Services;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
-using Xamarin.Forms;
 
 namespace LogYourself.ViewModels
 {
@@ -13,14 +8,16 @@ namespace LogYourself.ViewModels
     {
         protected IDatabaseService _database;
 
-        bool isBusy = false;
+        private bool isBusy = false;
+
         public bool IsBusy
         {
             get { return isBusy; }
             set { _ = SetProperty(ref isBusy, value); }
         }
 
-        string title = string.Empty;
+        private string title = string.Empty;
+
         public string Title
         {
             get { return title; }
@@ -42,7 +39,6 @@ namespace LogYourself.ViewModels
             return true;
         }
 
-
         public BaseViewModel(IDatabaseService db = null)
         {
             _database = db ?? DependencyService.Get<IDatabaseService>();
@@ -61,7 +57,9 @@ namespace LogYourself.ViewModels
         }
 
         #region INotifyPropertyChanged
+
         public event PropertyChangedEventHandler PropertyChanged;
+
         protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             PropertyChangedEventHandler changed = PropertyChanged;
@@ -70,15 +68,7 @@ namespace LogYourself.ViewModels
 
             changed.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        #endregion
-        // This will pop the current page off the navigation stack
-        // await Shell.Current.GoToAsync("..");
-        // await Shell.Current.GoToAsync(nameof(NewItemPage));
 
-        // This will push the ItemDetailPage onto the navigation stack
-        // await Shell.Current.GoToAsync($"{nameof(ItemDetailPage)}?{nameof(ItemDetailViewModel.ItemId)}={item.Id}");
-
-        // Prefixing with `//` switches to a different navigation stack instead of pushing to the active one
-        // await Shell.Current.GoToAsync($"//{nameof(AboutPage)}");
+        #endregion INotifyPropertyChanged
     }
 }

@@ -1,6 +1,4 @@
-﻿
-
-namespace LogYourself.ViewModels
+﻿namespace LogYourself.ViewModels
 {
     public class GoalEditorViewModel : BaseViewModel
     {

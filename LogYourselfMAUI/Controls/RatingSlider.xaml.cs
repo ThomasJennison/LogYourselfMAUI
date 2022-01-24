@@ -1,7 +1,4 @@
-﻿using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-
-namespace LogYourself.Controls
+﻿namespace LogYourself.Controls
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class RatingSlider : ContentView
@@ -23,7 +20,6 @@ namespace LogYourself.Controls
         private void Slider_ValueChanged(object sender, ValueChangedEventArgs e)
         {
             Rating = (sender as Slider).Value;
-
         }
     }
 }

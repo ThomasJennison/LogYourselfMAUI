@@ -1,6 +1,4 @@
 ﻿using LogYourself.Models;
-using System;
-using System.Collections.Generic;
 
 namespace LogYourself.ViewModels
 {

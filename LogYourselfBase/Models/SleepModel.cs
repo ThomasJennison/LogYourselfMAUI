@@ -1,5 +1,4 @@
 ﻿using LogYourself.Models.Base;
-using System;
 
 namespace LogYourself.Models
 {
@@ -16,7 +15,6 @@ namespace LogYourself.Models
         public SleepModel() : base(ModelType.Sleep)
         {
             DreamLog = string.Empty;
-
         }
     }
 }

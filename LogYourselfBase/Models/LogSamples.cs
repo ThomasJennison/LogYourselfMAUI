@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System;
-
-namespace LogYourself.Models
+﻿namespace LogYourself.Models
 {
     public static class LogSamples
     {

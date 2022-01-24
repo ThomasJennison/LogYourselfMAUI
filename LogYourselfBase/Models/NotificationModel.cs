@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-
-using LogYourself.Models.Base;
+﻿using LogYourself.Models.Base;
 
 namespace LogYourself.Models
 {

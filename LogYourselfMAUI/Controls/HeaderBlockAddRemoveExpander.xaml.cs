@@ -1,11 +1,5 @@
-﻿using System;
+﻿using LogYourself.Services;
 using System.Collections.ObjectModel;
-using System.Threading.Tasks;
-
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-
-using LogYourself.Services;
 
 namespace LogYourself.Controls
 {
@@ -53,7 +47,6 @@ namespace LogYourself.Controls
             set { suggestionPromptLabel.Text = value; }
         }
 
-
         public static readonly BindableProperty SelectedSuggestionProperty =
             BindableProperty.Create(nameof(SelectedSuggestion), typeof(string), typeof(HeaderBlockAddRemoveExpander),
                 default(string), BindingMode.TwoWay, propertyChanged: HandleSuggestionChanged);
@@ -61,7 +54,6 @@ namespace LogYourself.Controls
         public static readonly BindableProperty BoxTypeProperty =
             BindableProperty.Create(nameof(BoxType), typeof(SuggestionTypes), typeof(HeaderBlockAddRemoveExpander),
                 SuggestionTypes.Invalid, BindingMode.TwoWay, propertyChanged: HandleBoxTypeChanged);
-
 
         private static void HandleSuggestionChanged(BindableObject bindable, object oldValue, object newValue)
         {
@@ -108,30 +100,39 @@ namespace LogYourself.Controls
                 case SuggestionTypes.ActivityNames:
                     promptStr = "Enter a new activity name";
                     break;
+
                 case SuggestionTypes.Emotions:
                     promptStr = "Enter a new emotion";
                     break;
+
                 case SuggestionTypes.Locations:
                     promptStr = "Enter a new location";
                     break;
+
                 case SuggestionTypes.MealNames:
                     promptStr = "Enter a meal name";
                     break;
+
                 case SuggestionTypes.MealSizes:
                     promptStr = "Enter a new meal size";
                     break;
+
                 case SuggestionTypes.MealTypes:
                     promptStr = "Enter a new type of meal";
                     break;
+
                 case SuggestionTypes.SubstanceConsumptionMethods:
                     promptStr = "Enter a new consumption method";
                     break;
+
                 case SuggestionTypes.SubstanceNames:
                     promptStr = "Enter a new substance name";
                     break;
+
                 case SuggestionTypes.Units:
                     promptStr = "Enter a new unit";
                     break;
+
                 case SuggestionTypes.SocializationTypes:
                     promptStr = "How did you socialize?";
                     break;
@@ -173,7 +174,6 @@ namespace LogYourself.Controls
 
         private void AddButton_Pressed(object sender, EventArgs e)
         {
-
         }
     }
 }

@@ -1,7 +1,4 @@
-﻿using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-
-namespace LogYourself.Controls
+﻿namespace LogYourself.Controls
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SaveCancelPage : ContentView

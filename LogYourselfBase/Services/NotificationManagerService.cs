@@ -1,10 +1,5 @@
-﻿using Newtonsoft.Json;
-using LogYourself.Models;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
+﻿using LogYourself.Models;
+using Newtonsoft.Json;
 
 namespace LogYourself.Services
 {
@@ -85,12 +80,10 @@ namespace LogYourself.Services
 
                 foreach (KeyValuePair<int, DateTime> timeSets in holder.SystemKeys)
                 {
-
                     //Todo: create your own implementation of this.
                     //CrossLocalNotifications.Current.Show($"Time to log your {model.LogType}!",
                     //    model.Message, timeSets.Key, timeSets.Value);
                 }
-
             }
             Save();
         }
@@ -99,6 +92,5 @@ namespace LogYourself.Services
         {
             Save();
         }
-
     }
 }

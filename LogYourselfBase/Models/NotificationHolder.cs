@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace LogYourself.Models
+﻿namespace LogYourself.Models
 {
     public class NotificationHolder
     {
@@ -65,6 +62,5 @@ namespace LogYourself.Models
 
             return new Dictionary<int, DateTime>(SystemKeys);
         }
-
     }
 }

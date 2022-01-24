@@ -1,9 +1,4 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using SQLite;
-using System;
-
-namespace LogYourself.Models.Base
+﻿namespace LogYourself.Models.Base
 {
     public abstract class LogModelBase
     {
@@ -12,10 +7,12 @@ namespace LogYourself.Models.Base
         /// </summary>
         public DateTime RegisteredTime { get; set; }
 
+        //TODO: Fix pkey attr with new sqlite package
+
         /// <summary>
         /// SQL key
         /// </summary>
-        [PrimaryKey, AutoIncrement]
+        //[PrimaryKey, AutoIncrement]
         public int ID { get; set; }
 
         /// <summary>

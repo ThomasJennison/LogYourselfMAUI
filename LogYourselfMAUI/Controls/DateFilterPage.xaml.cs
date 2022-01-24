@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Threading.Tasks;
-
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-
-using LogYourself.Services;
-using System.Collections.Generic;
+﻿using System.Collections.ObjectModel;
 
 namespace LogYourself.Controls
 {
@@ -18,6 +10,7 @@ namespace LogYourself.Controls
             get { return (ObservableCollection<DateViewModel>)GetValue(DaysInRangeProperty); }
             set { SetValue(DaysInRangeProperty, value); }
         }
+
         public static readonly BindableProperty DaysInRangeProperty = BindableProperty.Create(
                                propertyName: nameof(DaysInRange),
                                returnType: typeof(ObservableCollection<DateViewModel>),
@@ -30,6 +23,7 @@ namespace LogYourself.Controls
             get { return (bool)GetValue(LoadingProperty); }
             set { SetValue(LoadingProperty, value); }
         }
+
         public static readonly BindableProperty LoadingProperty = BindableProperty.Create(
                                propertyName: nameof(Loading),
                                returnType: typeof(bool),
@@ -42,6 +36,7 @@ namespace LogYourself.Controls
             get { return (DateViewModel)GetValue(SelectedDateTimeProperty); }
             set { SetValue(SelectedDateTimeProperty, value); }
         }
+
         public static readonly BindableProperty SelectedDateTimeProperty = BindableProperty.Create(
                                propertyName: nameof(SelectedDateTime),
                                returnType: typeof(DateViewModel),
@@ -54,6 +49,7 @@ namespace LogYourself.Controls
             get { return (string)GetValue(SelectedMonthProperty); }
             set { SetValue(SelectedMonthProperty, value); }
         }
+
         public static readonly BindableProperty SelectedMonthProperty = BindableProperty.Create(
                                propertyName: nameof(SelectedMonth),
                                returnType: typeof(string),
@@ -66,6 +62,7 @@ namespace LogYourself.Controls
             get { return (string)GetValue(SelectedYearProperty); }
             set { SetValue(SelectedYearProperty, value); }
         }
+
         public static readonly BindableProperty SelectedYearProperty = BindableProperty.Create(
                                propertyName: nameof(SelectedYear),
                                returnType: typeof(string),
@@ -78,6 +75,7 @@ namespace LogYourself.Controls
             get { return (string)GetValue(PageTitleProperty); }
             set { SetValue(PageTitleProperty, value); }
         }
+
         public static readonly BindableProperty PageTitleProperty = BindableProperty.Create(
                                propertyName: nameof(PageTitle),
                                returnType: typeof(string),
@@ -90,6 +88,7 @@ namespace LogYourself.Controls
             get { return (Command)GetValue(BackCommandProperty); }
             set { SetValue(BackCommandProperty, value); }
         }
+
         public static readonly BindableProperty BackCommandProperty = BindableProperty.Create(
                                propertyName: nameof(BackCommand),
                                returnType: typeof(Command),
@@ -102,13 +101,13 @@ namespace LogYourself.Controls
             get { return (bool)GetValue(DateFilterVisibilityProperty); }
             set { SetValue(DateFilterVisibilityProperty, value); }
         }
+
         public static readonly BindableProperty DateFilterVisibilityProperty = BindableProperty.Create(
                                propertyName: nameof(DateFilterVisibility),
                                returnType: typeof(bool),
                                declaringType: typeof(DateFilterPage),
                                defaultValue: false,
                                defaultBindingMode: BindingMode.TwoWay);
-
 
         public DateFilterPage()
         {

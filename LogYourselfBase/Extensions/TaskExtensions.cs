@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace LogYourself
+﻿namespace LogYourself
 {
     public static class TaskExtensions
     {
@@ -27,6 +22,5 @@ namespace LogYourself
                 onException(ex);
             }
         }
-
     }
 }

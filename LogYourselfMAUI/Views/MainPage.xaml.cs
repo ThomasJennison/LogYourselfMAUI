@@ -1,6 +1,6 @@
 ﻿using LogYourself.ViewModels;
 
-namespace LogYourself.Views
+namespace LogYourselfMAUI.Views
 {
     public partial class MainPage : ContentPage
     {

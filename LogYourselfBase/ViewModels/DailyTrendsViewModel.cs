@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using LogYourself.Models;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
-using Xamarin.Forms;
-
-using LogYourself.Models;
-using LogYourself.Models.Base;
 
 namespace LogYourself.ViewModels
 {
@@ -44,6 +37,7 @@ namespace LogYourself.ViewModels
             get => _selectedTrendLabel;
             set => SetProperty(ref _selectedTrendLabel, value);
         }
+
         public bool Loading
         {
             get => _loading;
@@ -55,6 +49,7 @@ namespace LogYourself.ViewModels
         public Command LoadSelectedDateCommand { get; set; }
 
         private TrendModel _selectedTrend;
+
         public TrendModel SelectedTrend
         {
             get => _selectedTrend;
@@ -113,6 +108,7 @@ namespace LogYourself.ViewModels
             try
             {
                 DateTime date = SelectedDay.Date;
+
                 #region Filter sleep data
 
                 List<MoodModel> moods = await _database.GetMoodsAsync(SelectedDay, SelectedDay);
@@ -137,9 +133,11 @@ namespace LogYourself.ViewModels
                 {
                     SleepForDay = sleepData.Sum(x => x.TotalSleep);
                 }
-                #endregion
+
+                #endregion Filter sleep data
 
                 #region Pick out substances
+
                 List<SubstanceModel> substanceData = await _database.GetSubstancesAsync(SelectedDay, SelectedDay);
                 Dictionary<string, List<OccuranceModel>> substanceOccurances = new Dictionary<string, List<OccuranceModel>>();
                 foreach (SubstanceModel substance in substanceData)
@@ -187,9 +185,11 @@ namespace LogYourself.ViewModels
                         ShowExtendedData = true
                     });
                 }
-                #endregion
+
+                #endregion Pick out substances
 
                 #region Activity Occurrences
+
                 List<ActivityModel> activityData = await _database.GetActivitiesAsync(SelectedDay, SelectedDay);
                 Dictionary<string, List<OccuranceModel>> activityOccurances = new Dictionary<string, List<OccuranceModel>>();
                 foreach (ActivityModel activity in activityData)
@@ -220,7 +220,8 @@ namespace LogYourself.ViewModels
                         TrendName = activityOccurance.Key
                     });
                 }
-                #endregion
+
+                #endregion Activity Occurrences
 
                 if (Trends.Count <= 0)
                 {
@@ -241,7 +242,6 @@ namespace LogYourself.ViewModels
                     SelectedTrend = Trends.First()
                 };
                 OnTrendSelected(args);
-
             }
             finally
             {

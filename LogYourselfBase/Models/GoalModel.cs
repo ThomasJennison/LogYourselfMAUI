@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace LogYourself.Models
+﻿namespace LogYourself.Models
 {
     public class GoalModel
     {
-
     }
 }
