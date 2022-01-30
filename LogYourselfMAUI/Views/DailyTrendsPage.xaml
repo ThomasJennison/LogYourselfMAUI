@@ -1,131 +1,125 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:controls="clr-namespace:LogYourself.Controls"
-             xmlns:services="clr-namespace:LogYourself.Services" xmlns:viewmodels="clr-namespace:LogYourself.ViewModels"
-             xmlns:logs="clr-namespace:LogYourself.Models" xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms" x:DataType="viewmodels:DailyTrendsViewModel"
-             mc:Ignorable="d"
+             xmlns:controls="clr-namespace:LogYourselfMAUI.Controls"
+             xmlns:models="clr-namespace:LogYourself.Models;assembly=LogYourselfBase"
              Title="Daily Trends"
-             x:Class="LogYourself.Views.DailyTrendsPage">
+             x:Class="LogYourselfMAUI.Views.DailyTrendsPage">
     <ContentPage.Resources>
-        <controls:BoolInverterConverter x:Key="boolInverter"/>
+        <controls:BoolInverterConverter x:Key="boolInverter" />
     </ContentPage.Resources>
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="200"/>
+                <RowDefinition Height="200" />
                 <RowDefinition />
-                <RowDefinition Height="80"/>
+                <RowDefinition Height="80" />
             </Grid.RowDefinitions>
             <Frame>
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="20" />
                         <RowDefinition />
                     </Grid.RowDefinitions>
-                    <Label Grid.Row="0" Text="{Binding SelectedTrendLabel}"/>
-                    <microcharts:ChartView Grid.Row="1" x:Name="chartView" />
+                    <Label Grid.Row="0" Text="{Binding SelectedTrendLabel}" />
+                    <Label>need to make a noice charto</Label>
                 </Grid>
             </Frame>
             <controls:HeaderBlock HeaderText="" Margin="4" Grid.Row="1">
                 <ScrollView>
                     <Frame Style="{StaticResource InnerFrameStyle}">
-                        <CollectionView  ItemsSource="{Binding Trends}" SelectedItem="{Binding SelectedTrend}" SelectionMode="Single">
-                            <CollectionView.ItemTemplate >
+                        <ListView  ItemsSource="{Binding Trends}" SelectedItem="{Binding SelectedTrend}" SelectionMode="Single">
+                            <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <Grid x:DataType="logs:TrendModel">
+                                    <Grid x:DataType="x:models TrendModel">
                                         <Frame BorderColor="Black" Margin="5" Padding="2">
                                             <StackLayout>
                                                 <Grid IsVisible="{Binding ShowExtendedData}">
                                                     <Grid.RowDefinitions>
-                                                        <RowDefinition Height="30"/>
-                                                        <RowDefinition Height="45"/>
-                                                        <RowDefinition Height="45"/>
-                                                        <RowDefinition Height="45"/>
-                                                        <RowDefinition Height="45"/>
-                                                        <RowDefinition Height="3"/>
+                                                        <RowDefinition Height="30" />
+                                                        <RowDefinition Height="45" />
+                                                        <RowDefinition Height="45" />
+                                                        <RowDefinition Height="45" />
+                                                        <RowDefinition Height="45" />
+                                                        <RowDefinition Height="3" />
                                                     </Grid.RowDefinitions>
                                                     <Label Text ="{Binding TrendName}" Grid.ColumnSpan="2" HorizontalTextAlignment="Center"
-                                                       FontSize="18" VerticalTextAlignment="Center" TextDecorations="Underline" TextColor="Black"/>
+                                                       FontSize="18" VerticalTextAlignment="Center" TextDecorations="Underline" TextColor="Black" />
                                                     <Grid Grid.Column="0" Grid.Row="1">
-                                                        <Label Text ="Occurrences" Style="{StaticResource InnerLabelStyle}"/>
-                                                        <Label Text ="{Binding TotalOccurances}" Grid.Row="1" HorizontalTextAlignment="Center" TextColor="Black"/>
+                                                        <Label Text ="Occurrences" Style="{StaticResource InnerLabelStyle}" />
+                                                        <Label Text ="{Binding TotalOccurances}" Grid.Row="1" HorizontalTextAlignment="Center" TextColor="Black" />
                                                     </Grid>
                                                     <Grid Grid.Column="1" Grid.Row="1">
-                                                        <Label Text ="Total" Style="{StaticResource InnerLabelStyle}" Grid.ColumnSpan="2"/>
-                                                        <Label Text ="{Binding TrendContextTotal, StringFormat='{0:F2}'}" Grid.Row="1" HorizontalTextAlignment="End" TextColor="Black"/>
-                                                        <Label Text ="{Binding TrendContextUnit}" Grid.Row="1" Grid.Column="1" HorizontalTextAlignment="Start" TextColor="Black"/>
+                                                        <Label Text ="Total" Style="{StaticResource InnerLabelStyle}" Grid.ColumnSpan="2" />
+                                                        <Label Text ="{Binding TrendContextTotal, StringFormat='{0:F2}'}" Grid.Row="1" HorizontalTextAlignment="End" TextColor="Black" />
+                                                        <Label Text ="{Binding TrendContextUnit}" Grid.Row="1" Grid.Column="1" HorizontalTextAlignment="Start" TextColor="Black" />
                                                     </Grid>
-                                                
+
                                                     <Grid Grid.Column="0" Grid.Row="2">
-                                                        <Label Text ="Shortest time Δ" Style="{StaticResource InnerLabelStyle}"/>
-                                                        <Label Text ="{Binding ShortestTimeBetween, StringFormat='{0:F2}h'}" Grid.Row="1" HorizontalTextAlignment="Center" TextColor="Black"/>
+                                                        <Label Text ="Shortest time Δ" Style="{StaticResource InnerLabelStyle}" />
+                                                        <Label Text ="{Binding ShortestTimeBetween, StringFormat='{0:F2}h'}" Grid.Row="1" HorizontalTextAlignment="Center" TextColor="Black" />
                                                     </Grid>
-                                                
+
                                                     <Grid Grid.Column="1" Grid.Row="2">
-                                                        <Label Text ="Longest time Δ" Style="{StaticResource InnerLabelStyle}"/>
-                                                        <Label Text ="{Binding LongestTimeBetween, StringFormat='{0:F2}h'}" Grid.Row="1" HorizontalTextAlignment="Center" TextColor="Black"/>
+                                                        <Label Text ="Longest time Δ" Style="{StaticResource InnerLabelStyle}" />
+                                                        <Label Text ="{Binding LongestTimeBetween, StringFormat='{0:F2}h'}" Grid.Row="1" HorizontalTextAlignment="Center" TextColor="Black" />
                                                     </Grid>
-                                                
+
                                                     <Grid Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2">
-                                                        <Label Text ="Average Time Δ" Style="{StaticResource InnerLabelStyle}"/>
-                                                        <Label Text ="{Binding AverageTimeBetween, StringFormat='{0:F2}h'}" Grid.Row="1" HorizontalTextAlignment="Center" TextColor="Black"/>
+                                                        <Label Text ="Average Time Δ" Style="{StaticResource InnerLabelStyle}" />
+                                                        <Label Text ="{Binding AverageTimeBetween, StringFormat='{0:F2}h'}" Grid.Row="1" HorizontalTextAlignment="Center" TextColor="Black" />
                                                     </Grid>
-                                                
+
                                                     <Grid Grid.Column="0" Grid.Row="4">
-                                                        <Label Text ="First time" Style="{StaticResource InnerLabelStyle}"/>
-                                                        <Label Text ="{Binding FirstTime, StringFormat='{0:hh:mm tt}'}" Grid.Row="1" HorizontalTextAlignment="Center" TextColor="Black"/>
+                                                        <Label Text ="First time" Style="{StaticResource InnerLabelStyle}" />
+                                                        <Label Text ="{Binding FirstTime, StringFormat='{0:hh:mm tt}'}" Grid.Row="1" HorizontalTextAlignment="Center" TextColor="Black" />
                                                     </Grid>
                                                     <Grid Grid.Column="1" Grid.Row="4">
-                                                        <Label Text ="Last time" Style="{StaticResource InnerLabelStyle}"/>
-                                                        <Label Text ="{Binding LastTime, StringFormat='{0:hh:mm tt}'}" Grid.Row="1" HorizontalTextAlignment="Center" TextColor="Black"/>
+                                                        <Label Text ="Last time" Style="{StaticResource InnerLabelStyle}" />
+                                                        <Label Text ="{Binding LastTime, StringFormat='{0:hh:mm tt}'}" Grid.Row="1" HorizontalTextAlignment="Center" TextColor="Black" />
                                                     </Grid>
                                                 </Grid>
 
                                                 <Grid IsVisible="{Binding ShowExtendedData, Converter={StaticResource boolInverter}}">
                                                     <Grid.RowDefinitions>
-                                                        <RowDefinition Height="30"/>
-                                                        <RowDefinition Height="45"/>
-                                                        <RowDefinition Height="3"/>
+                                                        <RowDefinition Height="30" />
+                                                        <RowDefinition Height="45" />
+                                                        <RowDefinition Height="3" />
                                                     </Grid.RowDefinitions>
                                                     <Label Text ="{Binding TrendName}" Grid.ColumnSpan="2" HorizontalTextAlignment="Center"
-                                                       FontSize="18" VerticalTextAlignment="Center" TextDecorations="Underline" TextColor="Black"/>
+                                                       FontSize="18" VerticalTextAlignment="Center" TextDecorations="Underline" TextColor="Black" />
                                                     <Grid Grid.Column="0" Grid.Row="1">
-                                                        <Label Text ="Total Logs" Style="{StaticResource InnerLabelStyle}"/>
-                                                        <Label Text ="{Binding TotalOccurances}" Grid.Row="1" HorizontalTextAlignment="Center" TextColor="Black"/>
+                                                        <Label Text ="Total Logs" Style="{StaticResource InnerLabelStyle}" />
+                                                        <Label Text ="{Binding TotalOccurances}" Grid.Row="1" HorizontalTextAlignment="Center" TextColor="Black" />
                                                     </Grid>
                                                     <Grid Grid.Column="1" Grid.Row="1">
-                                                        <Label Text ="Total" Style="{StaticResource InnerLabelStyle}" Grid.ColumnSpan="2"/>
-                                                        <Label Text ="{Binding TrendContextTotal, StringFormat='{0:F2}'}" Grid.Row="1" HorizontalTextAlignment="End" TextColor="Black"/>
-                                                        <Label Text ="{Binding TrendContextUnit}" Grid.Row="1" Grid.Column="1" HorizontalTextAlignment="Start" TextColor="Black"/>
+                                                        <Label Text ="Total" Style="{StaticResource InnerLabelStyle}" Grid.ColumnSpan="2" />
+                                                        <Label Text ="{Binding TrendContextTotal, StringFormat='{0:F2}'}" Grid.Row="1" HorizontalTextAlignment="End" TextColor="Black" />
+                                                        <Label Text ="{Binding TrendContextUnit}" Grid.Row="1" Grid.Column="1" HorizontalTextAlignment="Start" TextColor="Black" />
                                                     </Grid>
                                                 </Grid>
                                             </StackLayout>
                                         </Frame>
                                     </Grid>
                                 </DataTemplate>
-                            </CollectionView.ItemTemplate>
-                        </CollectionView>
+                            </ListView.ItemTemplate>
+                        </ListView>
                     </Frame>
                 </ScrollView>
             </controls:HeaderBlock>
 
-        <Grid BackgroundColor="{StaticResource Primary}" Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="60"/>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="60"/>
-            </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" Style="{StaticResource ButtonStyle}" Command="{Binding DateBackwardCommand}" Margin="6" Text="&lt;" FontSize="30"/>
+            <Grid BackgroundColor="{StaticResource Primary}" Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60" />
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="60" />
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Style="{StaticResource ButtonStyle}" Command="{Binding DateBackwardCommand}" Margin="6" Text="&lt;" FontSize="30" />
                 <Frame Grid.Column="1" BorderColor="Black" Margin="6" Padding="0">
-                    <DatePicker BackgroundColor="White" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center" Date="{Binding SelectedDay}"/>
+                    <DatePicker BackgroundColor="White" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center" Date="{Binding SelectedDay}" />
                 </Frame>
 
-                <Button Grid.Column="2" Style="{StaticResource ButtonStyle}" Text=">" FontSize="30" Margin="6" Command="{Binding DateForwardCommand}"/>
+                <Button Grid.Column="2" Style="{StaticResource ButtonStyle}" Text=">" FontSize="30" Margin="6" Command="{Binding DateForwardCommand}" />
             </Grid>
         </Grid>
-        
     </ContentPage.Content>
 </ContentPage>

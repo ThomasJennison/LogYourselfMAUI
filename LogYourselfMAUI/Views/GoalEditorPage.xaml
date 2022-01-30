@@ -3,14 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:controls="clr-namespace:LogYourself.Controls"
+             xmlns:controls="clr-namespace:LogYourselfMAUI.Controls"
              xmlns:models ="clr-namespace:LogYourself.Models.Base"
              mc:Ignorable="d"
-             x:Class="LogYourself.Views.GoalEditorPage">
+             x:Class="LogYourselfMAUI.Views.GoalEditorPage">
     <ContentPage.Content>
         <Grid>
             <controls:HeaderBlock Grid.Row="1" HeaderText="Existing Notifcations">
-
             </controls:HeaderBlock>
         </Grid>
     </ContentPage.Content>

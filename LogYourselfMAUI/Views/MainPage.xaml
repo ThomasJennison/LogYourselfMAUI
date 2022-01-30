@@ -1,238 +1,209 @@
 ﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="LogYourself.Views.MainPage"
-             xmlns:pages="clr-namespace:LogYourself.Views" 
-             xmlns:viewmodels="clr-namespace:LogYourself.ViewModels" 
-             x:DataType="viewmodels:MainViewModel"
+             x:Class="LogYourselfMAUI.Views.MainPage"
+             xmlns:pages="clr-namespace:LogYourselfMAUI.Views"
              Title="Log Yourself"
              NavigationPage.HasBackButton="true"
-             NavigationPage.HasNavigationBar="True"      
+             NavigationPage.HasNavigationBar="True"
              BackgroundColor="White">
 
-        <ScrollView>
-            <StackLayout>
-                <Frame Padding="5" Margin="10,20,10,10" BorderColor="Black">
-                    <Frame BackgroundColor="{StaticResource FrameBackground}" Padding="5">
-                        <StackLayout>
-                            <Grid Grid.Row="1" HeightRequest="500">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="10"/>
-                                    <ColumnDefinition Width=".2*"/>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition Width="80"/>
-                                    <ColumnDefinition Width="10"/>
-                                </Grid.ColumnDefinitions>
+    <ScrollView>
+        <StackLayout>
+            <Frame Padding="5" Margin="10,20,10,10" BorderColor="Black">
+                <Frame BackgroundColor="{StaticResource FrameBackground}" Padding="5">
+                    <StackLayout>
+                        <Grid Grid.Row="1" HeightRequest="500">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="10" />
+                                <ColumnDefinition Width=".2*" />
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="80" />
+                                <ColumnDefinition Width="10" />
+                            </Grid.ColumnDefinitions>
 
-                                <Frame Grid.ColumnSpan="5"
-                                       Margin="10" 
+                            <Frame Grid.ColumnSpan="5"
+                                       Margin="10"
                                        Padding="0"
-                                       BorderColor="Black"  
+                                       BorderColor="Black"
                                        BackgroundColor="{StaticResource PrimaryLight}">
-                                    <Label VerticalTextAlignment="Center" 
-                                           HorizontalTextAlignment="Center" 
+                                <Label VerticalTextAlignment="Center"
+                                           HorizontalTextAlignment="Center"
                                            FontSize="18"
                                            TextColor="White">
-                                           Log Types
-                                    </Label>
-                                </Frame>
+                                    Log Types
+                                </Label>
+                            </Frame>
 
-                                <Image Grid.Row="1" 
-                                       Grid.Column="1" 
-                                       Source="twotone_psychology_black_48dp.png"
-                                />
-                                <Button Text="+ Mood"
-                                        Grid.Row="1" 
-                                        Grid.Column="2" 
-                                        Command="{Binding NavigateCommand}" 
-                                        CommandParameter="{x:Static pages:PageNames.MoodPage}" 
+                            <Image Grid.Row="1"
+                                       Grid.Column="1"
+                                       Source="twotone_psychology_black_48dp.png" />
+                            <Button Text="+ Mood"
+                                        Grid.Row="1"
+                                        Grid.Column="2"
+                                        Command="{Binding NavigateCommand}"
+                                        CommandParameter="{x:Static pages:PageNames.MoodPage}"
+                                        Style="{StaticResource ButtonStyle}" />
+                            <ImageButton Grid.Row="1"
+                                             Grid.Column="3"
+                                             Command="{Binding NavigateCommand}"
+                                             CommandParameter="{x:Static pages:PageNames.MoodsPage}"
+                                             Source="twotone_menu_book_black_48dp.png"
+                                             BackgroundColor="Transparent"
+                                             Margin="-2,6,0,10"
+                                             BorderColor="Black"
+                                             BorderWidth="1" />
+
+                            <Image Grid.Row="2"
+                                       Grid.Column="1"
+                                       Source="baseline_groups_black_48dp.png" />
+                            <Button Grid.Row="2"
+                                        Grid.Column="2"
+                                        Text="+ Socialization"
                                         Style="{StaticResource ButtonStyle}"
-                                />
-                                <ImageButton Grid.Row="1" 
-                                             Grid.Column="3" 
-                                             Command="{Binding NavigateCommand}" 
-                                             CommandParameter="{x:Static pages:PageNames.MoodsPage}" 
+                                        Command="{Binding NavigateCommand}"
+                                        CommandParameter="{x:Static pages:PageNames.SocializationPage}" />
+                            <ImageButton Grid.Row="2"
+                                             Grid.Column="3"
+                                             Command="{Binding NavigateCommand}"
+                                             CommandParameter="{x:Static pages:PageNames.SocializationsPage}"
                                              Source="twotone_menu_book_black_48dp.png"
                                              BackgroundColor="Transparent"
-                                             Margin="-2,6,0,10" 
-                                             BorderColor="Black" 
-                                             BorderWidth="1"
-                                />
-                                
-                                <Image Grid.Row="2" 
-                                       Grid.Column="1" 
-                                       Source="baseline_groups_black_48dp.png"
-                                />
-                                <Button Grid.Row="2" 
-                                        Grid.Column="2" 
-                                        Text="+ Socialization" 
-                                        Style="{StaticResource ButtonStyle}" 
-                                        Command="{Binding NavigateCommand}" 
-                                        CommandParameter="{x:Static pages:PageNames.SocializationPage}"
-                                />
-                                <ImageButton Grid.Row="2" 
-                                             Grid.Column="3" 
-                                             Command="{Binding NavigateCommand}" 
-                                             CommandParameter="{x:Static pages:PageNames.SocializationsPage}" 
-                                             Source="twotone_menu_book_black_48dp.png"
-                                             BackgroundColor="Transparent"
-                                             Margin="-2,6,0,10" BorderColor="Black" BorderWidth="1"
-                                />
+                                             Margin="-2,6,0,10" BorderColor="Black" BorderWidth="1" />
 
-                                <Image Grid.Row="3" 
-                                       Grid.Column="1" 
-                                       Source="twotone_restaurant_menu_black_48dp.png" 
-                                />
-                                <Button Command="{Binding NavigateCommand}" 
-                                        CommandParameter="{x:Static pages:PageNames.MealPage}" 
-                                        Grid.Row="3" 
-                                        Grid.Column="2" 
-                                        Style="{StaticResource ButtonStyle}" 
-                                        Text="+ Meal"
-                                />
-                                <ImageButton Grid.Row="3" 
-                                             Grid.Column="3" 
-                                             Command="{Binding NavigateCommand}" 
-                                             CommandParameter="{x:Static pages:PageNames.MealsPage}" 
-                                             Source="twotone_menu_book_black_48dp.png"
-                                             Margin="-2,6,0,10" 
-                                             BackgroundColor="Transparent"
-                                             BorderColor="Black" 
-                                             BorderWidth="1"
-                                />
-
-                                <Image  Grid.Row="4" 
-                                        Grid.Column="1" 
-                                        Source="twotone_hotel_black_48dp.png"
-                                />
-                                <Button Command="{Binding NavigateCommand}"
-                                        CommandParameter="{x:Static pages:PageNames.SleepPage}" 
-                                        Text="+ Sleep"
-                                        Grid.Row="4" 
+                            <Image Grid.Row="3"
+                                       Grid.Column="1"
+                                       Source="twotone_restaurant_menu_black_48dp.png" />
+                            <Button Command="{Binding NavigateCommand}"
+                                        CommandParameter="{x:Static pages:PageNames.MealPage}"
+                                        Grid.Row="3"
                                         Grid.Column="2"
                                         Style="{StaticResource ButtonStyle}"
-                                />
-                                <ImageButton Grid.Row="4" 
-                                             Grid.Column="3" 
+                                        Text="+ Meal" />
+                            <ImageButton Grid.Row="3"
+                                             Grid.Column="3"
+                                             Command="{Binding NavigateCommand}"
+                                             CommandParameter="{x:Static pages:PageNames.MealsPage}"
+                                             Source="twotone_menu_book_black_48dp.png"
+                                             Margin="-2,6,0,10"
+                                             BackgroundColor="Transparent"
+                                             BorderColor="Black"
+                                             BorderWidth="1" />
+
+                            <Image  Grid.Row="4"
+                                        Grid.Column="1"
+                                        Source="twotone_hotel_black_48dp.png" />
+                            <Button Command="{Binding NavigateCommand}"
+                                        CommandParameter="{x:Static pages:PageNames.SleepPage}"
+                                        Text="+ Sleep"
+                                        Grid.Row="4"
+                                        Grid.Column="2"
+                                        Style="{StaticResource ButtonStyle}" />
+                            <ImageButton Grid.Row="4"
+                                             Grid.Column="3"
                                              Command="{Binding NavigateCommand}"
                                              BackgroundColor="Transparent"
-                                             CommandParameter="{x:Static pages:PageNames.SleepsPage}" 
+                                             CommandParameter="{x:Static pages:PageNames.SleepsPage}"
                                              Source="twotone_menu_book_black_48dp.png"
-                                             Margin="-2,6,0,10" 
-                                             BorderColor="Black" 
-                                             BorderWidth="1"
-                                />
+                                             Margin="-2,6,0,10"
+                                             BorderColor="Black"
+                                             BorderWidth="1" />
 
-                                <Image Grid.Row="5" 
-                                       Grid.Column="1" 
-                                       Source="twotone_nature_people_black_48dp.png"
-                                />
-                                <Button Command="{Binding NavigateCommand}"  
-                                        CommandParameter="{x:Static pages:PageNames.ActivityPage}" 
+                            <Image Grid.Row="5"
+                                       Grid.Column="1"
+                                       Source="twotone_nature_people_black_48dp.png" />
+                            <Button Command="{Binding NavigateCommand}"
+                                        CommandParameter="{x:Static pages:PageNames.ActivityPage}"
                                         Text="+ Activity"
                                         Grid.Row="5"
-                                        Grid.Column="2" 
-                                        Style="{StaticResource ButtonStyle}"
-                                />
-                                <ImageButton Grid.Row="5" 
+                                        Grid.Column="2"
+                                        Style="{StaticResource ButtonStyle}" />
+                            <ImageButton Grid.Row="5"
                                              BackgroundColor="Transparent"
-                                             Grid.Column="3" 
-                                             Command="{Binding NavigateCommand}" 
-                                             CommandParameter="{x:Static pages:PageNames.ActivitiesPage}" 
+                                             Grid.Column="3"
+                                             Command="{Binding NavigateCommand}"
+                                             CommandParameter="{x:Static pages:PageNames.ActivitiesPage}"
                                              Source="twotone_menu_book_black_48dp.png"
-                                             Margin="-2,6,0,10" 
-                                             BorderColor="Black" 
-                                             BorderWidth="1"
-                                />
+                                             Margin="-2,6,0,10"
+                                             BorderColor="Black"
+                                             BorderWidth="1" />
 
-                                <Image Grid.Row="6" 
-                                       Grid.Column="1" 
-                                       Source="twotone_local_bar_black_48dp.png"
-                                />
-                                <Button Command="{Binding NavigateCommand}" 
+                            <Image Grid.Row="6"
+                                       Grid.Column="1"
+                                       Source="twotone_local_bar_black_48dp.png" />
+                            <Button Command="{Binding NavigateCommand}"
                                         CommandParameter="{x:Static pages:PageNames.SubstancePage}"
-                                        AutomationId="go_substance" 
+                                        AutomationId="go_substance"
                                         Text="+ Substance"
-                                        Grid.Row="6" 
-                                        Grid.Column="2" 
-                                        Style="{StaticResource ButtonStyle}"
-                                />
-                                <ImageButton Grid.Row="6" 
-                                             Grid.Column="3" 
+                                        Grid.Row="6"
+                                        Grid.Column="2"
+                                        Style="{StaticResource ButtonStyle}" />
+                            <ImageButton Grid.Row="6"
+                                             Grid.Column="3"
                                              BackgroundColor="Transparent"
-                                             Command="{Binding NavigateCommand}" 
+                                             Command="{Binding NavigateCommand}"
                                              CommandParameter="{x:Static pages:PageNames.SubstancesPage}"
                                              Source="twotone_menu_book_black_48dp.png"
-                                             Margin="-2,6,0,10" BorderColor="Black" BorderWidth="1"
-                                />
-                            </Grid>
+                                             Margin="-2,6,0,10" BorderColor="Black" BorderWidth="1" />
+                        </Grid>
 
-                            <Grid Grid.Row="1" HeightRequest="270">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="29"></RowDefinition>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="10"/>
-                                    <ColumnDefinition Width=".2*"/>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition Width="10"/>
-                                </Grid.ColumnDefinitions>
+                        <Grid Grid.Row="1" HeightRequest="270">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="29"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="10" />
+                                <ColumnDefinition Width=".2*" />
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="10" />
+                            </Grid.ColumnDefinitions>
 
-                                <Frame Grid.ColumnSpan="4" 
-                                       Margin="10" 
-                                       Padding="0" 
-                                       BorderColor="Black"  
-                                       BackgroundColor="{StaticResource PrimaryLight}"
-                                />
-                                <Image Grid.Row="1" 
-                                       Grid.Column="1" 
-                                       Source="twotone_multiline_chart_black_48dp.png"
-                                />
-                                <Button Text="Daily Trends" 
-                                        Grid.Row="1" 
-                                        Grid.Column="2" 
+                            <Frame Grid.ColumnSpan="4"
+                                       Margin="10"
+                                       Padding="0"
+                                       BorderColor="Black"
+                                       BackgroundColor="{StaticResource PrimaryLight}" />
+                            <Image Grid.Row="1"
+                                       Grid.Column="1"
+                                       Source="twotone_multiline_chart_black_48dp.png" />
+                            <Button Text="Daily Trends"
+                                        Grid.Row="1"
+                                        Grid.Column="2"
                                         Margin="3"
                                         HeightRequest="20"
-                                        Style="{StaticResource ButtonStyle}"   
+                                        Style="{StaticResource ButtonStyle}"
                                         Command="{Binding NavigateCommand}"
-                                        CommandParameter="{x:Static pages:PageNames.DailyTrendsPage}"
-                                />
-                                <Image Grid.Row="2" 
+                                        CommandParameter="{x:Static pages:PageNames.DailyTrendsPage}" />
+                            <Image Grid.Row="2"
                                        Grid.Column="1"
                                        Opacity="0.2"
-                                       Source="twotone_flag_black_48dp.png"
-                                />
-                                
-                                <Button Grid.Row="2" 
+                                       Source="twotone_flag_black_48dp.png" />
+
+                            <Button Grid.Row="2"
                                         Opacity=".2"
-                                        Grid.Column="2"  
-                                        Style="{StaticResource ButtonStyle}" 
-                                        CommandParameter="data" 
-                                        Margin="3" 
+                                        Grid.Column="2"
+                                        Style="{StaticResource ButtonStyle}"
+                                        CommandParameter="data"
+                                        Margin="3"
                                         Text="Goals"
                                         IsEnabled="False"
                                         IsVisible="True"
-                                        MinimumHeightRequest="150"
-                                />
+                                        MinimumHeightRequest="150" />
 
-                                <Image Grid.Row="3"
+                            <Image Grid.Row="3"
                                        Grid.Column="1"
-                                       Source="twotone_settings_black_48dp.png" 
-                                />
-                                
-                                <Button Grid.Row="3" 
+                                       Source="twotone_settings_black_48dp.png" />
+
+                            <Button Grid.Row="3"
                                         Grid.Column="2"
-                                        Text="Settings" 
-                                        Margin="3" 
+                                        Text="Settings"
+                                        Margin="3"
                                         Style="{StaticResource ButtonStyle}"
-                                        Command="{Binding NavigateCommand}" 
-                                        CommandParameter="{x:Static pages:PageNames.SettingsPage}"
-                                />
-                            </Grid>
-                        </StackLayout>
-                    </Frame>
+                                        Command="{Binding NavigateCommand}"
+                                        CommandParameter="{x:Static pages:PageNames.SettingsPage}" />
+                        </Grid>
+                    </StackLayout>
                 </Frame>
-
-            </StackLayout>
-        </ScrollView>
-
+            </Frame>
+        </StackLayout>
+    </ScrollView>
 </ContentPage>

@@ -1,101 +1,94 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:services="clr-namespace:LogYourself.Services"
-             mc:Ignorable="d"
              Title="Log an activity"
              Background="White"
-             NavigationPage.HasNavigationBar="True"
-             xmlns:controls="clr-namespace:LogYourself.Controls"
-             x:Class="LogYourself.Views.ActivityPage">
-    <ContentPage.Content>
-        <controls:SaveCancelPage SaveCommand="{Binding SaveLogCommand}" CancelCommand="{Binding BackCommand}"  PageName="Activity">
+             xmlns:controls="clr-namespace:LogYourselfMAUI.Controls"
+             x:Class="LogYourselfMAUI.Views.ActivityPage">
+
+    <controls:SaveCancelPage SaveCommand="{Binding SaveLogCommand}" CancelCommand="{Binding BackCommand}"  PageName="Activity">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="{StaticResource RowHeightDateTime}" />
+                <RowDefinition Height="{StaticResource RowHeightSingle}" />
+                <RowDefinition Height="{StaticResource RowHeightSingle}" />
+                <RowDefinition Height="{StaticResource RowHeightSlider}" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
             <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="{StaticResource RowHeightDateTime}"/>
-                    <RowDefinition Height="{StaticResource RowHeightSingle}"/>
-                    <RowDefinition Height="{StaticResource RowHeightSingle}"/>
-                    <RowDefinition Height="{StaticResource RowHeightSlider}"/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-
-                <Grid>
-                    <!--Start Box-->
-                    <controls:HeaderBlock HeaderText="Start">
-                        <Frame Style="{StaticResource InnerFrameStyle}">
-                            <Grid>
-                                <TimePicker Style="{StaticResource TimeSelectorStyle}" Time="{Binding StartTime}"/>
-                                <DatePicker Grid.Row="1" Style="{StaticResource DateSelectorStyle}" Date="{Binding StartDateTime}"/>
-                            </Grid>
-                        </Frame>
-                    </controls:HeaderBlock>
-
-                    <!--Wake up time box-->
-                    <controls:HeaderBlock HeaderText="End" Grid.Column="1">
-                        <Frame Style="{StaticResource InnerFrameStyle}">
-                            <Grid>
-                                <TimePicker Time ="{Binding EndTime}" Style="{StaticResource TimeSelectorStyle}"/>
-                                <DatePicker Grid.Row="1" Style="{StaticResource DateSelectorStyle}" Date="{Binding EndDateTime}"/>
-                            </Grid>
-                        </Frame>
-                    </controls:HeaderBlock>
-                </Grid>
-
-                <!--Total sleep box-->
-                <controls:HeaderBlock HeaderText="Total Time" Grid.Row="1">
+                <!--Start Box-->
+                <controls:HeaderBlock HeaderText="Start">
                     <Frame Style="{StaticResource InnerFrameStyle}">
-                        <Label Text="{Binding Duration}" Style="{StaticResource  InnerLabelStyle}" TextColor="Black"/>
+                        <Grid>
+                            <TimePicker Style="{StaticResource TimeSelectorStyle}" Time="{Binding StartTime}" />
+                            <DatePicker Grid.Row="1" Style="{StaticResource DateSelectorStyle}" Date="{Binding StartDateTime}" />
+                        </Grid>
                     </Frame>
                 </controls:HeaderBlock>
 
-                <controls:HeaderBlockAddRemoveExpander Grid.Row="2" Title="Activity Name" SelectedSuggestion="{Binding ActivityName}" BoxType="{x:Static services:SuggestionTypes.ActivityNames}"/>
-
-                <controls:HeaderBlock HeaderText="How much did you enjoy it?" Grid.Row="3">
-                    <controls:RatingSlider Rating="{Binding Enjoyment}"/>
+                <!--Wake up time box-->
+                <controls:HeaderBlock HeaderText="End" Grid.Column="1">
+                    <Frame Style="{StaticResource InnerFrameStyle}">
+                        <Grid>
+                            <TimePicker Time ="{Binding EndTime}" Style="{StaticResource TimeSelectorStyle}" />
+                            <DatePicker Grid.Row="1" Style="{StaticResource DateSelectorStyle}" Date="{Binding EndDateTime}" />
+                        </Grid>
+                    </Frame>
                 </controls:HeaderBlock>
-                
-                <controls:HeaderBlock Grid.Row="4" HeaderText="Details">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="{StaticResource RowHeightSwitch}"/>
-                            <RowDefinition Height="{StaticResource RowHeightSwitch}"/>
-                        </Grid.RowDefinitions>
-
-                        <Frame Padding="0" BorderColor="Black">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition Width=".5*"/>
-                                </Grid.ColumnDefinitions>
-                                <Label Text="Was it exercise?" HorizontalOptions="Center" VerticalOptions="Center"/>
-                                <Frame Grid.Column="1" BackgroundColor="{StaticResource PrimaryLight}" Padding="0" Margin="3">
-                                    <Switch Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" ThumbColor="{StaticResource Secondary}" IsToggled="{Binding Exersice}"/>
-                                </Frame>
-                            </Grid>
-                        </Frame>
-
-                        <Frame Padding="0" Grid.Row="1" BorderColor="Black">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition Width=".5*"/>
-                                </Grid.ColumnDefinitions>
-                                <Label Text="Did you want to do it?" HorizontalOptions="Center" VerticalOptions="Center"/>
-                                <Frame Grid.Column="1" BackgroundColor="{StaticResource PrimaryLight}" Padding="0" Margin="3">
-                                    <Switch Grid.Column="1" ThumbColor="{StaticResource Secondary}" HorizontalOptions="Center" VerticalOptions="Center" IsToggled="{Binding WantedToStart}"/>
-                                </Frame>
-                            </Grid>
-                        </Frame>
-
-                        <Frame Grid.Row="2" Padding="0" BorderColor="Black">
-                            <Editor Placeholder="Anything stand out?" Text="{Binding Comments}" Style="{StaticResource EditorStyle}"/>
-                        </Frame>
-                    </Grid>
-                </controls:HeaderBlock>
-
             </Grid>
-        </controls:SaveCancelPage>
-    </ContentPage.Content>
+
+            <!--Total sleep box-->
+            <controls:HeaderBlock HeaderText="Total Time" Grid.Row="1">
+                <Frame Style="{StaticResource InnerFrameStyle}">
+                    <Label Text="{Binding Duration}" Style="{StaticResource  InnerLabelStyle}" TextColor="Black" />
+                </Frame>
+            </controls:HeaderBlock>
+
+            <controls:HeaderBlockAddRemoveExpander Grid.Row="2" Title="Activity Name" SelectedSuggestion="{Binding ActivityName}" BoxType="{x:Static services:SuggestionTypes.ActivityNames}" />
+
+            <controls:HeaderBlock HeaderText="How much did you enjoy it?" Grid.Row="3">
+                <controls:RatingSlider Rating="{Binding Enjoyment}" />
+            </controls:HeaderBlock>
+
+            <controls:HeaderBlock Grid.Row="4" HeaderText="Details">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="{StaticResource RowHeightSwitch}" />
+                        <RowDefinition Height="{StaticResource RowHeightSwitch}" />
+                    </Grid.RowDefinitions>
+
+                    <Frame Padding="0" BorderColor="Black">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width=".5*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Text="Was it exercise?" HorizontalOptions="Center" VerticalOptions="Center" />
+                            <Frame Grid.Column="1" BackgroundColor="{StaticResource PrimaryLight}" Padding="0" Margin="3">
+                                <Switch Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" ThumbColor="{StaticResource Secondary}" IsToggled="{Binding Exersice}" />
+                            </Frame>
+                        </Grid>
+                    </Frame>
+
+                    <Frame Padding="0" Grid.Row="1" BorderColor="Black">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width=".5*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Text="Did you want to do it?" HorizontalOptions="Center" VerticalOptions="Center" />
+                            <Frame Grid.Column="1" BackgroundColor="{StaticResource PrimaryLight}" Padding="0" Margin="3">
+                                <Switch Grid.Column="1" ThumbColor="{StaticResource Secondary}" HorizontalOptions="Center" VerticalOptions="Center" IsToggled="{Binding WantedToStart}" />
+                            </Frame>
+                        </Grid>
+                    </Frame>
+
+                    <Frame Grid.Row="2" Padding="0" BorderColor="Black">
+                        <Editor Placeholder="Anything stand out?" Text="{Binding Comments}" Style="{StaticResource EditorStyle}" />
+                    </Frame>
+                </Grid>
+            </controls:HeaderBlock>
+        </Grid>
+    </controls:SaveCancelPage>
 </ContentPage>
